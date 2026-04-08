@@ -1,22 +1,48 @@
-/* Game Manager — global tokens and utilities */
+/* Game Manager — design tokens */
 :root {
-  --gm-bg: #f4f5f7;
-  --gm-surface: #ffffff;
-  --gm-text: #1a1d24;
-  --gm-muted: #5c6370;
-  --gm-border: #d8dce3;
-  --gm-primary: #3b5bdb;
+  --gm-font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+  --gm-font-mono: ui-monospace, 'Cascadia Code', 'Segoe UI Mono', monospace;
+
+  --gm-bg-base: #f4f6fd;
+  --gm-bg: var(--gm-bg-base);
+  --gm-surface: rgb(255 255 255 / 0.72);
+  --gm-surface-solid: #ffffff;
+  --gm-text: #0f172a;
+  --gm-muted: #64748b;
+  --gm-border: rgb(148 163 184 / 0.35);
+  --gm-border-strong: rgb(148 163 184 / 0.55);
+
+  --gm-primary: #4f46e5;
+  --gm-primary-dark: #4338ca;
   --gm-primary-contrast: #ffffff;
-  --gm-focus: #3b5bdb;
-  --gm-danger: #c92a2a;
-  --gm-radius: 8px;
-  --gm-radius-lg: 12px;
-  --gm-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+  --gm-accent: #a855f7;
+  --gm-focus: #6366f1;
+  --gm-danger: #dc2626;
+  --gm-success: #059669;
+
+  --gm-mark-x: #4f46e5;
+  --gm-mark-o: #e11d48;
+
+  --gm-radius: 10px;
+  --gm-radius-lg: 16px;
+  --gm-radius-xl: 22px;
+
+  --gm-shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
+  --gm-shadow: 0 4px 6px -1px rgb(15 23 42 / 0.07),
+    0 2px 4px -2px rgb(15 23 42 / 0.05);
+  --gm-shadow-lg: 0 20px 40px -12px rgb(15 23 42 / 0.12),
+    0 8px 16px -8px rgb(79 70 229 / 0.15);
+  --gm-shadow-glow: 0 0 0 1px rgb(255 255 255 / 0.6) inset;
+
+  --gm-blur: 16px;
+
   --gm-space-xs: 0.25rem;
   --gm-space-sm: 0.5rem;
   --gm-space-md: 1rem;
   --gm-space-lg: 1.5rem;
   --gm-space-xl: 2rem;
+  --gm-space-2xl: 2.75rem;
 }
 
 *,
@@ -25,24 +51,38 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   height: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
-  background: var(--gm-bg);
+  min-height: 100%;
+  font-family: var(--gm-font);
+  font-size: 1rem;
+  line-height: 1.55;
   color: var(--gm-text);
-  line-height: 1.5;
+  background-color: var(--gm-bg-base);
+  background-image:
+    radial-gradient(
+      ellipse 120% 80% at 100% -20%,
+      rgb(199 210 254 / 0.45),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 90% 70% at 0% 100%,
+      rgb(251 207 232 / 0.35),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgb(238 242 255 / 0.9),
+      var(--gm-bg-base) 70%
+    );
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .btn {
@@ -50,43 +90,62 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.625rem 1rem;
+  padding: 0.65rem 1.15rem;
   border-radius: var(--gm-radius);
   font: inherit;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
   cursor: pointer;
   border: 1px solid transparent;
   transition:
-    background 0.15s ease,
-    color 0.15s ease,
-    border-color 0.15s ease;
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 
   &:disabled {
-    opacity: 0.6;
+    opacity: 0.55;
     cursor: not-allowed;
+    transform: none;
   }
 
   &:focus-visible {
     outline: 2px solid var(--gm-focus);
-    outline-offset: 2px;
+    outline-offset: 3px;
   }
 }
 
 .btn--primary {
-  background: var(--gm-primary);
   color: var(--gm-primary-contrast);
+  background: linear-gradient(
+    135deg,
+    var(--gm-primary) 0%,
+    color-mix(in srgb, var(--gm-accent) 55%, var(--gm-primary)) 100%
+  );
+  box-shadow: var(--gm-shadow-sm), 0 8px 20px -6px rgb(79 70 229 / 0.45);
 
   &:hover:not(:disabled) {
-    filter: brightness(1.05);
+    transform: translateY(-1px);
+    box-shadow: var(--gm-shadow), 0 12px 28px -8px rgb(79 70 229 / 0.5);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
   }
 }
 
 .btn--ghost {
-  background: transparent;
+  background: rgb(255 255 255 / 0.55);
   color: var(--gm-text);
   border-color: var(--gm-border);
+  backdrop-filter: blur(var(--gm-blur));
+  -webkit-backdrop-filter: blur(var(--gm-blur));
+  box-shadow: var(--gm-shadow-sm);
 
   &:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--gm-text) 6%, transparent);
+    background: rgb(255 255 255 / 0.85);
+    border-color: var(--gm-border-strong);
   }
 }

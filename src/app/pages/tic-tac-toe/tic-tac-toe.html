@@ -1,6 +1,7 @@
 <div class="game-page">
   <header class="game-header">
     <div>
+      <p class="game-eyebrow">Local multiplayer</p>
       <h1 class="game-title">Tic-Tac-Toe</h1>
       <p class="game-status" role="status" aria-live="polite">
         {{ statusMessage() }}
@@ -8,25 +9,29 @@
     </div>
   </header>
 
-  <div
-    class="board"
-    role="grid"
-    aria-label="Tic-tac-toe board"
-    [attr.aria-rowcount]="3"
-    [attr.aria-colcount]="3"
-  >
-    @for (cell of game.state().board; track $index) {
-      <button
-        type="button"
-        class="cell"
-        [class.cell--filled]="cell !== ''"
-        [disabled]="cell !== '' || game.state().gameStatus !== 'active'"
-        [attr.aria-label]="cellLabel($index)"
-        (click)="play($index)"
-      >
-        <span class="cell-mark" aria-hidden="true">{{ cell }}</span>
-      </button>
-    }
+  <div class="board-surface">
+    <div
+      class="board"
+      role="grid"
+      aria-label="Tic-tac-toe board"
+      [attr.aria-rowcount]="3"
+      [attr.aria-colcount]="3"
+    >
+      @for (cell of game.state().board; track $index) {
+        <button
+          type="button"
+          class="cell"
+          [class.cell--filled]="cell !== ''"
+          [class.cell--x]="cell === 'X'"
+          [class.cell--o]="cell === 'O'"
+          [disabled]="cell !== '' || game.state().gameStatus !== 'active'"
+          [attr.aria-label]="cellLabel($index)"
+          (click)="play($index)"
+        >
+          <span class="cell-mark" aria-hidden="true">{{ cell }}</span>
+        </button>
+      }
+    </div>
   </div>
 
   <div class="game-actions">

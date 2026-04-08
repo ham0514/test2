@@ -1,7 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}
+
 .menu-page {
-  max-width: 48rem;
+  flex: 1;
+  width: 100%;
+  max-width: 52rem;
   margin: 0 auto;
   padding: var(--gm-space-lg);
+  padding-bottom: var(--gm-space-2xl);
 }
 
 .menu-header {
@@ -11,29 +21,50 @@
   justify-content: space-between;
   gap: var(--gm-space-md);
   margin-bottom: var(--gm-space-xl);
+  padding: var(--gm-space-lg) var(--gm-space-xl);
+  background: var(--gm-surface);
+  border: 1px solid rgb(255 255 255 / 0.65);
+  border-radius: var(--gm-radius-xl);
+  box-shadow: var(--gm-shadow), var(--gm-shadow-glow);
+  backdrop-filter: blur(var(--gm-blur));
+  -webkit-backdrop-filter: blur(var(--gm-blur));
 }
 
 .menu-title {
   margin: 0 0 var(--gm-space-xs);
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  background: linear-gradient(
+    120deg,
+    var(--gm-text) 0%,
+    color-mix(in srgb, var(--gm-primary) 40%, var(--gm-text)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .menu-welcome {
   margin: 0;
   color: var(--gm-muted);
   font-size: 0.9375rem;
+  font-weight: 500;
 }
 
 .menu-name {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--gm-text);
 }
 
 .menu-section-title {
   margin: 0 0 var(--gm-space-md);
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gm-muted);
 }
 
 .game-list {
@@ -51,14 +82,26 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--gm-space-md);
-  padding: var(--gm-space-lg);
+  padding: var(--gm-space-lg) var(--gm-space-xl);
   background: var(--gm-surface);
   border-radius: var(--gm-radius-lg);
-  box-shadow: var(--gm-shadow);
-  border: 1px solid var(--gm-border);
+  border: 1px solid rgb(255 255 255 / 0.7);
+  box-shadow: var(--gm-shadow-sm);
+  backdrop-filter: blur(var(--gm-blur));
+  -webkit-backdrop-filter: blur(var(--gm-blur));
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  &:not(.game-card--disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--gm-shadow);
+    border-color: color-mix(in srgb, var(--gm-primary) 22%, var(--gm-border));
+  }
 
   &--disabled {
-    opacity: 0.85;
+    opacity: 0.88;
   }
 }
 
@@ -70,21 +113,32 @@
 .game-card-title {
   margin: 0 0 var(--gm-space-xs);
   font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .game-card-desc {
   margin: 0;
   font-size: 0.875rem;
   color: var(--gm-muted);
+  line-height: 1.5;
+  max-width: 36rem;
 }
 
 .badge {
   display: inline-block;
   margin-top: var(--gm-space-sm);
-  padding: 0.2rem 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--gm-muted) 15%, transparent);
+  background: linear-gradient(
+    135deg,
+    rgb(241 245 249 / 0.95),
+    rgb(226 232 240 / 0.9)
+  );
   color: var(--gm-muted);
+  border: 1px solid var(--gm-border);
 }
