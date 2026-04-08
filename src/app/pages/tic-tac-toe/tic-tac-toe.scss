@@ -1,0 +1,77 @@
+.game-page {
+  max-width: 24rem;
+  margin: 0 auto;
+  padding: var(--gm-space-lg);
+}
+
+.game-header {
+  margin-bottom: var(--gm-space-lg);
+  text-align: center;
+}
+
+.game-title {
+  margin: 0 0 var(--gm-space-sm);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.game-status {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--gm-muted);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gm-space-sm);
+  max-width: min(100%, 20rem);
+  margin: 0 auto var(--gm-space-xl);
+  aspect-ratio: 1;
+}
+
+.cell {
+  min-height: 3.5rem;
+  min-width: 0;
+  border: 2px solid var(--gm-border);
+  border-radius: var(--gm-radius);
+  background: var(--gm-surface);
+  font-size: clamp(1.5rem, 8vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--gm-primary) 8%, var(--gm-surface));
+    border-color: var(--gm-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--gm-focus);
+    outline-offset: 2px;
+  }
+
+  &:disabled:not(.cell--filled) {
+    cursor: default;
+    opacity: 0.6;
+  }
+
+  &:disabled.cell--filled {
+    cursor: default;
+    opacity: 1;
+  }
+}
+
+.cell-mark {
+  display: block;
+}
+
+.game-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gm-space-md);
+  justify-content: center;
+}

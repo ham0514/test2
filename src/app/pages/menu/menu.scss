@@ -1,0 +1,90 @@
+.menu-page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: var(--gm-space-lg);
+}
+
+.menu-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gm-space-md);
+  margin-bottom: var(--gm-space-xl);
+}
+
+.menu-title {
+  margin: 0 0 var(--gm-space-xs);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.menu-welcome {
+  margin: 0;
+  color: var(--gm-muted);
+  font-size: 0.9375rem;
+}
+
+.menu-name {
+  font-weight: 600;
+  color: var(--gm-text);
+}
+
+.menu-section-title {
+  margin: 0 0 var(--gm-space-md);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.game-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gm-space-md);
+}
+
+.game-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gm-space-md);
+  padding: var(--gm-space-lg);
+  background: var(--gm-surface);
+  border-radius: var(--gm-radius-lg);
+  box-shadow: var(--gm-shadow);
+  border: 1px solid var(--gm-border);
+
+  &--disabled {
+    opacity: 0.85;
+  }
+}
+
+.game-card-body {
+  flex: 1;
+  min-width: 12rem;
+}
+
+.game-card-title {
+  margin: 0 0 var(--gm-space-xs);
+  font-size: 1.125rem;
+}
+
+.game-card-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--gm-muted);
+}
+
+.badge {
+  display: inline-block;
+  margin-top: var(--gm-space-sm);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gm-muted) 15%, transparent);
+  color: var(--gm-muted);
+}

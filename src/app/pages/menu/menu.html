@@ -1,0 +1,47 @@
+<div class="menu-page">
+  <header class="menu-header">
+    <div>
+      <h1 class="menu-title">Game Manager</h1>
+      <p class="menu-welcome">
+        Welcome back, <span class="menu-name">{{ displayName() }}</span>
+      </p>
+    </div>
+    <button type="button" class="btn btn--ghost" (click)="logout()">
+      Log out
+    </button>
+  </header>
+
+  <section class="menu-section" aria-labelledby="games-heading">
+    <h2 id="games-heading" class="menu-section-title">Games</h2>
+    <ul class="game-list">
+      @for (game of games; track game.identifier) {
+        <li>
+          <article
+            class="game-card"
+            [class.game-card--disabled]="game.status !== 'available'"
+          >
+            <div class="game-card-body">
+              <h3 class="game-card-title">{{ game.title }}</h3>
+              <p class="game-card-desc">{{ game.description }}</p>
+              @if (game.status === 'coming_soon') {
+                <span class="badge">Coming soon</span>
+              }
+            </div>
+            <button
+              type="button"
+              class="btn btn--primary"
+              [disabled]="game.status !== 'available'"
+              (click)="openGame(game)"
+            >
+              @if (game.status === 'available') {
+                Play
+              } @else {
+                Locked
+              }
+            </button>
+          </article>
+        </li>
+      }
+    </ul>
+  </section>
+</div>

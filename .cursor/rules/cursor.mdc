@@ -1,9 +1,6 @@
 ---
-context: true
-priority: high
-scope: project
+alwaysApply: true
 ---
-
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
 ## TypeScript Best Practices
@@ -58,3 +55,9 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+
+## UI Library Rule
+- Use Angular Material only.
+- Do NOT use Bootstrap, Tailwind CSS, PrimeNG, NG-ZORRO, CoreUI, or any other UI/component library.
+- Prefer Angular Material and Angular CDK for all UI patterns.

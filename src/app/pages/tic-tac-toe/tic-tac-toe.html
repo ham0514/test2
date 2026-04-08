@@ -1,0 +1,40 @@
+<div class="game-page">
+  <header class="game-header">
+    <div>
+      <h1 class="game-title">Tic-Tac-Toe</h1>
+      <p class="game-status" role="status" aria-live="polite">
+        {{ statusMessage() }}
+      </p>
+    </div>
+  </header>
+
+  <div
+    class="board"
+    role="grid"
+    aria-label="Tic-tac-toe board"
+    [attr.aria-rowcount]="3"
+    [attr.aria-colcount]="3"
+  >
+    @for (cell of game.state().board; track $index) {
+      <button
+        type="button"
+        class="cell"
+        [class.cell--filled]="cell !== ''"
+        [disabled]="cell !== '' || game.state().gameStatus !== 'active'"
+        [attr.aria-label]="cellLabel($index)"
+        (click)="play($index)"
+      >
+        <span class="cell-mark" aria-hidden="true">{{ cell }}</span>
+      </button>
+    }
+  </div>
+
+  <div class="game-actions">
+    <button type="button" class="btn btn--primary" (click)="reset()">
+      New game
+    </button>
+    <button type="button" class="btn btn--ghost" (click)="backToMenu()">
+      Back to menu
+    </button>
+  </div>
+</div>
